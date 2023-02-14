@@ -3,13 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
+	"oxide/server"
 )
 
 func main() {
 	debug := flag.Bool("debug", false, "Enable debug mode")
+	tickrate := flag.Int("tickrate", 4, "Game ticks per second")
+	memory := flag.Int("memory", 1024, "Memory in MB") // On every tick, we need to check if we have enough memory to continue
 	flag.Parse()
 
-	if *debug {
-		fmt.Println("\033[1;44m[INFO]\033[0;34m Debug Mode Enabled\033[0m")
-	}
+	fmt.Printf("Debug mode: %v\nTickrate: %v\nMemory Allocated: %v\n", *debug, *tickrate, *memory)
+	server.Go(*debug, *tickrate, *memory)
 }
