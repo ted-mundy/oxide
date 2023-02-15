@@ -12,7 +12,7 @@ func loop(tickrate int, memory int) {
 	run := true
 	for run {
 		// Do tick stuff here
-		fmt.Println("I'm sending out updates to all clients!")
+		// fmt.Println("I'm sending out updates to all clients!")
 
 		// Get memory usage
 		var m runtime.MemStats
@@ -28,4 +28,6 @@ func loop(tickrate int, memory int) {
 		// Sleep for the interval
 		time.Sleep(time.Duration(interval) * time.Millisecond)
 	}
+
+	wg.Done()
 }
