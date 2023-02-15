@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"oxide/events"
 	"oxide/packet"
+	server_events "oxide/server/events"
 )
 
 func listen(port int, debugMode bool) {
@@ -23,7 +25,7 @@ func listen(port int, debugMode bool) {
 	defer udp_connection.Close()
 
 	// Initialise events here
-	// ...
+	server_events.Initialize()
 	// Finish initialising events here
 
 	buffer := make([]byte, 1024)
@@ -50,6 +52,6 @@ func listen(port int, debugMode bool) {
 		}
 
 		// Handle events here. For now we'll just print the event type
-		fmt.Println(pkt.EventType)
+		events.Call(pkt.EventType)
 	}
 }
