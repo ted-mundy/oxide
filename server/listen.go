@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"oxide/packet"
 )
 
 func listen(port int, debugMode bool) {
@@ -35,14 +36,20 @@ func listen(port int, debugMode bool) {
 			os.Exit(1)
 		}
 
+		pkt, valid := packet.Parse(buffer[:n])
+		if !valid {
+			if debugMode {
+				fmt.Printf("Received invalid packet from %v - %v (%v)\n", addr, buffer[:n], string(buffer[:n]))
+			}
+			continue
+		}
+
 		if debugMode {
 			fmt.Printf("Received %v bytes from %v - %v\n", n, addr, string(buffer[:n]))
 			udp_connection.WriteToUDP([]byte("Hello World"), addr)
 		}
 
-		// Simple event. To be changed into our event system later on.
-		if string(buffer[:n]) == "handshake" && !debugMode {
-			fmt.Printf("Received Handshake request from %v\n", addr)
-		}
+		// Handle events here. For now we'll just print the event type
+		fmt.Println(pkt.EventType)
 	}
 }
