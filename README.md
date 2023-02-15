@@ -8,6 +8,11 @@ To run the server, install golang, and run
 go run oxide [-debug]
 ```
 
+To see help with all of the flags, run
+```
+go run oxide -h
+```
+
 And you're off
 
 ## Checklist
