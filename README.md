@@ -13,7 +13,7 @@ And you're off
 ## Checklist
 These are the things that need doing.
 
-- [ ] Listen for packets
+- [x] Listen for packets
 - [ ] Handle events given in packets
 - [ ] Connect to account database
 - [ ] Authentication with each packet
