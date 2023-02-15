@@ -19,3 +19,4 @@ These are the things that need doing.
 - [ ] Authentication with each packet
 - [ ] Chat server (TCP)
 - [ ] Send clients game info every tick
+- [ ] Punish players (kick, ban, mute)
